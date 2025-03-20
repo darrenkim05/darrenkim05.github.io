@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    history
+{% endblock %}
+
+{% block main %}
+    <style>
+        table   {
+            margin: auto;
+            border-cllapse: collapse;
+        }
+        h, td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+    <table>
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Transacted Price</th>
+            <th>Time</th>
+            <th>TOTAL</th>
+        </tr>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.symbol }}</td>
+            <td>{{ transaction.shares }}</td>
+            <td>{{ transaction.price | usd}}</td>
+            <td>{{ transaction.timestamp }}</td>
+            <td>{{ (transaction.shares * transaction.price) | usd }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

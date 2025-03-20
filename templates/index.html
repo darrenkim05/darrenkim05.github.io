@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+    <style>
+        table   {
+            margin: auto;
+            border-cllapse: collapse;
+        }
+        h, td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+    <table>
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Single Value</th>
+            <th>Curent Value</th>
+        </tr>
+        {% for stock in stocks %}
+        <tr>
+            <td>{{ stock.symbol }}</td>
+            <td>{{ stock.total_shares }}</td>
+            <td>{{ stock.price | usd}}</td>
+            <td>{{ (stock.price * stock.total_shares) | usd}}</td>
+
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>TOTAL Value: {{ grand_total }}</th>
+            <th>BALANCE: {{ cash }}</th>
+        </tr>
+    </table>
+{% endblock %}
